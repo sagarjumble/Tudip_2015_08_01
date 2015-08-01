@@ -1,0 +1,43 @@
+<html ng-app="app">
+	<head>
+		<link rel="stylesheet" href="app/bootstrap.css" />
+	</head>
+	<body ng-controller="Timer">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-6">
+				<label>From</label>
+				<input type="time" ng-model="time.from">
+				</div>
+				<div class="col-md-6">
+				<label>To</label>
+				<input type="time" ng-model="time.to">
+				<button type="submit" class="btn btn-primary" ng-click="add()">Add</button>
+				</div>
+				
+			</div>
+			<div class="col-md-6 col-md-offset-5">
+				<button type="submit" class="btn btn-primary" ng-click="process()">Process</button>
+			</div>
+			<div class="col-md-6 col-md-offset-3">
+				<div> Result</div>
+				<table class="table table-striped">
+					<tr>
+						<td>From </td>
+						<td>TO </td>
+					</tr>
+					<tr ng-repeat="slot in newSlot">
+						<td>{{slot.from}}</td>
+						<td>{{slot.to}}</td>
+					</tr>
+ 
+				</table>
+			</div>
+	
+		<script src="app/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		 <script src="app/moment.js"></script>
+		<script src="app/app.js"></script>
+	</body>
+
+</html>
