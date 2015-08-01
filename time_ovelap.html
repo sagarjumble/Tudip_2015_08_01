@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>Time Ovelapiing</head>
+<body>
+	<h3>This is time test example</h3>
+	<div id="parent">
+	<div id ="one"> Start time: <input type="time" id="s_one"/> End time <input type="time" id="e_one"/></div><br>
+	<div id ="two"> Start time: <input type="time" id="s_two"/> End time <input type="time" id="e_two"/></div><br>
+	<div id ="three"> Start time: <input type="time" id="s_three"/> End time <input type="time" id="e_three"/></div><br>
+	<div id ="four"> Start time: <input type="time" id="s_four"/> End time <input type="time" id="e_four"/></div><br>
+	<input type="button" onClick="timeOverlap()" value="Check it"/>
+	</div>
+</body>
+<script>
+	function timeOverlap()
+	{
+		if(document.getElementById("s_two").value <= document.getElementById("e_one").value && document.getElementById("s_three").value <= document.getElementById("e_two").value)
+		{
+			alert("111");
+			document.getElementById("e_one").value = document.getElementById("e_three").value;
+			document.getElementById("s_two").value ="";
+			document.getElementById("e_two").value ="";
+			document.getElementById("s_three").value ="";
+			document.getElementById("e_three").value ="";
+		}
+		else if(document.getElementById("s_two").value <= document.getElementById("e_one").value)
+		{
+			alert("222");
+			document.getElementById("e_one").value = document.getElementById("e_two").value;
+			document.getElementById("s_two").value ="";
+			document.getElementById("e_two").value ="";
+			
+		}
+
+		else if(document.getElementById("s_three").value <= document.getElementById("e_two").value && document.getElementById("s_four").value <= document.getElementById("e_three").value)
+		{
+			alert("333");
+			document.getElementById("e_two").value = document.getElementById("e_four").value;
+			document.getElementById("s_three").value ="";
+			document.getElementById("e_three").value ="";
+			document.getElementById("s_four").value ="";
+			document.getElementById("e_four").value ="";
+		}
+		else if(document.getElementById("s_three").value <= document.getElementById("e_two").value)
+		{
+			alert("444");
+			document.getElementById("e_two").value = document.getElementById("e_three").value;
+			document.getElementById("s_three").value ="";
+			document.getElementById("e_three").value ="";
+		}
+		if(document.getElementById("s_four").value <= document.getElementById("e_three").value)
+		{
+			alert("555");
+			document.getElementById("e_three").value = document.getElementById("e_four").value;
+			document.getElementById("s_four").value ="";
+			document.getElementById("e_four").value ="";
+
+		}
+	}
+</script>
+</html>	
