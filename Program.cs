@@ -10,57 +10,44 @@ namespace Overlapping_Time_Slot
     {
         static void Main(string[] args)
         {
-            ArrayList fromSlot = new ArrayList();
-            ArrayList toSlot = new ArrayList();
+            List<DateTime> fromSlot = new List<DateTime> { };
+            List<DateTime> toSlot = new List<DateTime> { };
+            List<DateTime> finalSortList = new List<DateTime> { };
+            string sFromDt, sToDt;
+            DateTime tempStarTime, tempEndTime;
+            string sDate = Convert.ToString(System.DateTime.Now.Date.ToShortDateString());
 
             Console.WriteLine("How many time slots you want to merege");
             int numOfTimeSlots = Convert.ToInt32(Console.ReadLine());
-            string sDate = Convert.ToString(System.DateTime.Now.Date.ToShortDateString());
             for (int count = 1; count <= numOfTimeSlots; count++)
             {
                 Console.WriteLine("Enter FROM Time slot in 24 Hrs value as HH:MM");
-                string sFromDt = Convert.ToString(Console.ReadLine());
-                sFromDt = sDate + " " + sFromDt + ":00.000";
-                fromSlot.Add(sFromDt);
+                sFromDt = Convert.ToString(Console.ReadLine());
+                sFromDt = sDate + " " + sFromDt;
+                tempStarTime = DateTime.Parse(sFromDt.ToString());
+                fromSlot.Add(tempStarTime);
                 Console.WriteLine("Enter TO Time slot in 24 Hrs value as HH:MM");
-                string sToDt = Convert.ToString(Console.ReadLine());
-                sToDt = sDate + " " + sToDt + ":00.000";
-                toSlot.Add(sToDt);
+                sToDt = Convert.ToString(Console.ReadLine());
+                sToDt = sDate + " " + sToDt;
+                tempEndTime = DateTime.Parse(sToDt.ToString());
+                toSlot.Add(tempEndTime);
             }
+            int lcount = toSlot.Count();
 
-            DateTime tt = DateTime.Parse(fromSlot[0].ToString());
-            Console.WriteLine(tt);
-            DateTime ts = DateTime.Parse(toSlot[0].ToString());
-            Console.WriteLine(ts);
-            int i2 = TimeSpan.Compare(tt.TimeOfDay, ts.TimeOfDay);
-            Console.WriteLine(i2);
-           
- 
+            fromSlot.Sort();
+            toSlot.Sort();
+            var minStartStamp = fromSlot[0];
+            fromSlot.RemoveAt(0);
+            var maxToStamp = toSlot[lcount - 1];
+            toSlot.RemoveAt(lcount - 1);
 
-            //////////////////////////////////////////
-            //finding minimum date value from al
-            DateTime minDate = DateTime.MaxValue;
-            DateTime maxDate = DateTime.MinValue;
-            foreach (var dateString in fromSlot)
+            for (int count = 0; count < fromSlot.Count; count++)
             {
-                DateTime date = DateTime.Parse(dateString.ToString());
-                if (date < minDate)
-                    minDate = date;
-                if (date > maxDate)
-                    maxDate = date;
+                DateTime temp1 = DateTime.Parse(fromSlot[count].ToString());
+                int hours = temp1.Hour;
+                Console.WriteLine(hours);
             }
-            Console.WriteLine("Min Date"+minDate.ToString());
-            Console.WriteLine("Max Date" + maxDate.ToString());
-            Console.ReadLine();
-           //int i2= TimeSpan.Compare(t1.TimeOfDay, t2.TimeOfDay);
-           //Console.Write(i2.ToString());
-           //Console.Read();
-
-           // for (DateTime x = t1; x <= t6; x = x.AddDays(1))
-           // {
-               
-           // }
-
+           Console.ReadLine();
         }
     }
 }
